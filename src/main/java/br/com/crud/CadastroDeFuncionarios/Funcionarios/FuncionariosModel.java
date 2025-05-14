@@ -1,5 +1,6 @@
-package br.com.crud.CadastroDeFuncionarios;
+package br.com.crud.CadastroDeFuncionarios.Funcionarios;
 
+import br.com.crud.CadastroDeFuncionarios.Setor.SetorModel;
 import jakarta.persistence.*;
 
 //Entity transforma uma classe em entidade do banco de dados
@@ -11,9 +12,20 @@ public class FuncionariosModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nome;
+
     private String email;
+
     private int idade;
+
+
+    //@ManuToOne - um funcionario tem um unico setor
+    @ManyToOne
+    @JoinColumn(name = "setor_id") //Foreing Key ou chave estrangeira
+    private SetorModel setor;
+
+
 
     public FuncionariosModel() {
     }
@@ -27,6 +39,7 @@ public class FuncionariosModel {
     public String getNome() {
         return nome;
     }
+
 
     public void setNome(String nome) {
         this.nome = nome;
